@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRX | الموقع الرسمي الكامل</title>
+    <style>
+        :root {
+            --bg: #000000;
+            --purple: #8e2de2;
+            --card: rgba(15, 15, 19, 0.9);
+            --accent: #00e5ff;
+            --star-color: #ffffff;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: white;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            margin: 0; padding: 0;
+            text-align: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        #star-container {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            background: #000000;
+        }
+        .star {
+            position: absolute;
+            background: var(--star-color);
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: twinkle var(--duration) infinite;
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        .sidebar {
+            height: 100%; width: 0; position: fixed; z-index: 2000;
+            top: 0; right: 0; background-color: #050507;
+            overflow-x: hidden; transition: 0.5s; padding-top: 60px;
+            border-left: 2px solid var(--purple);
+        }
+        .sidebar a {
+            padding: 15px 25px; text-decoration: none; font-size: 18px;
+            color: white; display: block; transition: 0.3s; text-align: right;
+        }
+        .sidebar a:hover { color: var(--accent); background: rgba(142, 45, 226, 0.1); }
+        .sidebar .closebtn { position: absolute; top: 10px; left: 20px; font-size: 36px; }
+
+        @keyframes dance {
+            0%, 100% { transform: translateY(0) rotate(0); }
+            50% { transform: translateY(-10px) rotate(2deg); }
+        }
+        .dancing { animation: dance 3s ease-in-out infinite; }
+
+        header {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 10px 5%; background: rgba(0,0,0,0.8);
+            border-bottom: 2px solid var(--purple);
+            position: sticky; top: 0; z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .menu-btn { width: 50px; height: 50px; cursor: pointer; border-radius: 50%; border: 2px solid var(--purple); object-fit: cover; }
+        .logo { font-size: 28px; font-weight: bold; cursor: pointer; }
+        .logo span { color: var(--purple); text-shadow: 0 0 10px var(--purple); }
+
+        .container { max-width: 600px; margin: 20px auto; padding: 15px; position: relative; z-index: 1; }
+
+        .page { display: none; }
+        .active { display: block; animation: fadeIn 0.4s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        .main-card {
+            background: var(--card); border-radius: 20px; padding: 25px;
+            margin-bottom: 20px; border: 1px solid #222; cursor: pointer;
+            transition: 0.3s; text-decoration: none; color: white;
+            display: block; backdrop-filter: blur(10px);
+        }
+        .main-card:hover { border-color: var(--accent); transform: scale(1.02); }
+
+        .hero-btn {
+            background: #5865F2; display: block; padding: 20px;
+            border-radius: 15px; color: white; text-decoration: none;
+            font-weight: bold; font-size: 18px; margin-bottom: 20px;
+        }
+
+        .title-no-section {
+            color: var(--accent); font-size: 26px; margin: 40px 0 20px;
+            font-weight: bold; text-shadow: 0 0 10px var(--purple);
+        }
+
+        .card {
+            background: var(--card); border-radius: 20px; padding: 15px;
+            border: 1px solid #222; margin-bottom: 25px; text-align: right;
+        }
+        .card img { width: 100%; border-radius: 15px; margin-bottom: 12px; border: 1px solid #333; }
+
+        .btn-install {
+            display: block; padding: 15px; border-radius: 12px;
+            background: #000000;
+            color: white; text-decoration: none; font-weight: bold;
+            margin-top: 10px; text-align: center; font-size: 18px;
+            border: 1px solid #444;
+            transition: 0.3s;
+        }
+        .btn-install:hover { border-color: #fff; box-shadow: 0 0 10px white; }
+        .btn-install::before { content: '★ '; }
+        .btn-install::after { content: ' ★'; }
+        
+        .btn-vn { background: #111; border-color: var(--accent); }
+        .status-badge { background: #ff0000; color: white; padding: 2px 8px; border-radius: 4px; font-size: 12px; }
+
+        footer { padding: 30px; color: #555; font-size: 12px; }
+    </style>
+</head>
+<body>
+
+<div id="star-container"></div>
+
+<div id="mySidebar" class="sidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+    <a href="#" onclick="showPage('home'); closeNav()">الصفحة الرئيسية</a>
+    <a href="#" onclick="showPage('hacks-ios'); closeNav()">(هاك🍎 روبلوكس ايفون)</a>
+    <a href="#" onclick="showPage('hacks-android'); closeNav()">(هاك🤖 روبلوكس اندرويد)</a>
+    <a href="#" onclick="showPage('hacks-pc'); closeNav()">(هاك💻 روبلوكس بي سي)</a>
+    <a href="#" onclick="showPage('hacks-mac'); closeNav()">(هاك🖥️ ماك)</a>
+</div>
+
+<header>
+    <img src="https://raw.githubusercontent.com/hatm12345cc-source/TRX/refs/heads/main/IMG_1996.png" class="menu-btn dancing" onclick="openNav()">
+    <div class="logo" onclick="showPage('home')">T<span>RX</span></div>
+</header>
+
+<div class="container">
+    
+    <div id="home" class="page active">
+        <h1 class="title-no-section">مرحباً بكم في موقع TRX</h1>
+        <img src="https://raw.githubusercontent.com/hatm12345cc-source/TRX/refs/heads/main/IMG_1996.png" class="dancing" style="width:130px; border-radius:50%; margin-bottom:20px; border: 3px solid var(--purple); box-shadow: 0 0 20px var(--purple);">
+        
+        <div class="main-card" onclick="showPage('hacks-ios')"><h3>هاكات iOS 🍎</h3><p>(روبلوكس والمزيد)</p></div>
+        <div class="main-card" onclick="showPage('hacks-android')"><h3>هاكات Android 🤖</h3><p>(أقوى الهاكات VN)</p></div>
+        <div class="main-card" onclick="showPage('hacks-pc')"><h3>هاكات PC ⚙️</h3><p>(روبلوكس بي سي ولابتوب)</p></div>
+        <div class="main-card" onclick="showPage('hacks-mac')"><h3>أجهزة Mac 🖥️</h3><p>(هاك الماك)</p></div>
+        <a href="https://discord.gg/haX59nFsM" class="hero-btn">Discord TRX 💬</a>
+    </div>
+
+    <div id="hacks-ios" class="page">
+        <h2 class="title-no-section">(هاك الآيفون 🍎)</h2>
+        <div class="card">
+            <img src="https://raw.githubusercontent.com/hatm12345cc-source/xy-/refs/heads/main/IMG_2074.jpeg" class="dancing">
+            <h3>Ronix VN</h3>
+            <a href="https://www.mediafire.com/file/tzpjd9joql4ivs5/RonixVN.ipa/file" class="btn-install">Install Ronix VN</a>
+        </div>
+        <div class="card">
+            <img src="https://raw.githubusercontent.com/hatm12345cc-source/VN7/refs/heads/main/IMG_1929.png" class="dancing">
+            <h3>Delta iOS</h3>
+            <a href="itms-services://?action=download-manifest&url=https://delta.bz/manifest.plist" class="btn-install">Install Delta</a>
+        </div>
+        <div class="card">
+            <img src="https://raw.githubusercontent.com/hatm12345cc-source/VN7/refs/heads/main/IMG_1935.jpeg" class="dancing">
+            <h3>SkibX iOS</h3>
+            <a href="https://www.mediafire.com/file/zr2fnv1li2sztlz/SkibXVN+V8+HuyMythic+KeyLess.ipa/file" class="btn-install">Install SkibX VN</a>
+        </div>
+        <div class="card">
+            <img src="https://raw.githubusercontent.com/hatm12345cc-source/VN7/refs/heads/main/IMG_2016.jpeg" class="dancing">
+            <h3>ESign & KSign</h3>
+            <a href="https://api.khoindvn.io.vn/RoAzoJ" class="btn-install">Install ESign</a>
+            <a href="https://api.khoindvn.io.vn/UM2Mcz" class="btn-install">Install KSign</a>
+        </div>
+    </div>
+
+    <div id="hacks-android" class="page">
+        <h2 class="title-no-section">(هاك الأندرويد 🤖)</h2>
+        <div class="card">
+            <img src="https://raw.githubusercontent.com/TRX-hun/511/refs/heads/main/IMG_2154.jpeg" class="dancing">
+            <h3>Cryptic Android</h3>
+            <a href="https://www.mediafire.com/file/nyvuz8nr8r98lj6/Cryptic_APK_2.708.880.apk/file" class="btn-install">Install Cryptic</a>
+        </div>
+        <div class="card">
+            <img src="https://raw.githubusercontent.com/hatm12345cc-source/VN7xxz/refs/heads/main/IMG_1987.jpeg" class="dancing">
+            <h3>JJSploit Android</h3>
+            <a href="https://www.mediafire.com/file/gqecdw99e5fyntq/JJSploit_64Bits-2.708.880.apk/file" class="btn-install">Install JJSploit</a>
+        </div>
+        <div class="card">
+            <img src="https://raw.githubusercontent.com/hatm12345cc-source/delta-vn7/refs/heads/main/IMG_1960.jpeg" class="dancing">
+            <h3>Fluxus Android</h3>
+            <a href="https://www.mediafire.com/file/nacmh2iymo3k8wx/FluxusZ+V3.9.4+ARM64.apk/file" class="btn-install">Install Fluxus</a>
+        </div>
+        <div class="card">
+            <img src="https://raw.githubusercontent.com/hatm12345cc-source/delta-vn7/refs/heads/main/IMG_1956.jpeg" class="dancing">
+            <h3>Arceus X Neo</h3>
+            <a href="https://www.mediafire.com/file/5buplrts6jij7z5/Arceus+X+Neo+v2.0.5.apk/file" class="btn-install">Install Arceus X</a>
+        </div>
+        <div class="card">
+            <img src="https://raw.githubusercontent.com/hatm12345cc-source/krnl-vn/refs/heads/main/IMG_1899.jpeg" class="dancing">
+            <h3>Krnl VN</h3>
+            <a href="https://www.mediafire.com/file/zhvrz2elarw0y8y/Krnl+VN+new.apk/file" class="btn-install">Install Krnl VN</a>
+        </div>
+    </div>
+
+    <div id="hacks-pc" class="page">
+        <h2 class="title-no-section">(هاك PC & Laptop 💻)</h2>
+        <div class="card">
+            <img src="https://raw.githubusercontent.com/hatm12345cc-source/TRXZN/refs/heads/main/13FACF86-2936-4640-855C-58CC03C50AD8.png">
+            <h3>RC7 Windows</h3>
+            <a href="https://www.mediafire.com/file/h86k9egteysr1pc/RC7_WINDOWS_EXECUTOR.zip/file" class="btn-install">Install RC7</a>
+        </div>
+        <div class="card">
+            <img src="https://www.mediafire.com/convkey/6335/jmvvfr5uysvve9j6g.jpg">
+            <h3>Ronix Laptop</h3>
+            <a href="https://getronin.xyz" class="btn-install">Install Ronix</a>
+        </div>
+        <div class="card">
+            <img src="https://www.mediafire.com/convkey/1211/73x9fymmh2dhyrk6g.jpg">
+            <h3>Swift PC</h3>
+            <a href="https://getswift.vip/download" class="btn-install">Install Swift</a>
+        </div>
+    </div>
+
+    <div id="hacks-mac" class="page">
+        <h2 class="title-no-section">(هاك MacOS 🖥️)</h2>
+        <div class="card">
+            <img src="https://www.mediafire.com/convkey/7414/cxq9pgkftfyqt6n6g.jpg">
+            <h3>Hydrogen Mac</h3>
+            <a href="https://hydrogenmacos.selly.store" class="btn-install">Install Hydrogen</a>
+        </div>
+        <div class="card">
+            <img src="https://www.mediafire.com/convkey/9421/th38qxeaf90q2vl6g.jpg">
+            <h3>MacSploit</h3>
+            <a href="https://www.raptor.fun" class="btn-install">Install MacSploit</a>
+        </div>
+    </div>
+</div>
+
+<footer>TRX 511 | جميع الحقوق محفوظة لأبوعتب © 2026</footer>
+
+<script>
+    const container = document.getElementById('star-container');
+    for (let i = 0; i < 140; i++) {
+        const star = document.createElement('div');
+        star.className = 'star';
+        star.style.width = star.style.height = Math.random() * 2 + 1 + 'px';
+        star.style.top = Math.random() * 100 + '%';
+        star.style.left = Math.random() * 100 + '%';
+        star.style.setProperty('--duration', Math.random() * 3 + 2 + 's');
+        container.appendChild(star);
+    }
+    function openNav() { document.getElementById("mySidebar").style.width = "260px"; }
+    function closeNav() { document.getElementById("mySidebar").style.width = "0"; }
+    function showPage(pageId) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.getElementById(pageId).classList.add('active');
+        window.scrollTo(0,0);
+    }
+</script>
+</body>
+</html>
